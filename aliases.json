@@ -3,6 +3,7 @@
   "@assets": "./src/assets",
   "@components": "./src/components",
   "@constants": "./src/constants",
+  "@navigation": "./src/navigation",
   "@redux": "./src/redux",
   "@screens": "./src/screens"
 }
