@@ -5,12 +5,12 @@ import { Animated } from 'react-native';
 // STYLE
 import style from './style';
 
-interface ActiveIndicatorProps {
+interface IActiveIndicator {
   translateX: Animated.Value;
   scaleX: Animated.Value;
 }
 
-function ActiveIndicator({ translateX, scaleX }: ActiveIndicatorProps) {
+function BannerActiveIndicator({ translateX, scaleX }: IActiveIndicator) {
   return (
     <Animated.View
       style={[
@@ -23,4 +23,4 @@ function ActiveIndicator({ translateX, scaleX }: ActiveIndicatorProps) {
   );
 }
 
-export default ActiveIndicator;
+export default BannerActiveIndicator;

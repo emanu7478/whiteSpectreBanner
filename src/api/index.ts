@@ -1,8 +1,8 @@
 import { apiClient } from './apiClient';
 import { getErrorMsg } from './apiIssues';
 
-const GetRequest = async (endPoint: string, payload: any) => {
-  const response = await apiClient.get(endPoint, payload);
+const getRequest = async (endPoint: string) => {
+  const response = await apiClient.get(endPoint);
   if (response?.ok) {
     return response;
   } else {
@@ -11,4 +11,4 @@ const GetRequest = async (endPoint: string, payload: any) => {
   }
 };
 
-export { GetRequest };
+export { getRequest };

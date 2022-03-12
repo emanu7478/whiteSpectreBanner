@@ -4,26 +4,29 @@ import { Animated, FlatList, useWindowDimensions, View } from 'react-native';
 
 // CUSTOM COMPONENTS
 import TextButton from '../textButton';
-import ActiveIndicator from './activeIndicator';
+import BannerActiveIndicator from './bannerActiveIndicator';
 import ImageCard from './imageCard';
-import Indicators from './indicators';
+import BannerIndicators from './bannerIndicators';
 
 // STYLE
 import style from './style';
-interface imagesProp {
-  uri: string;
-}
 
-interface dataProp {
+interface IImageData {
   title: string;
-  images: imagesProp[];
+  images: string[];
 }
 
-interface BannerProps {
-  data: dataProp[];
+interface IBanner {
+  data: IImageData[];
 }
 
-function Banner({ data }: BannerProps) {
+const getRandomImage = (images: string[]) => {
+  const randomImageIndex = Math.floor(Math.random() * images.length);
+  const image = images[randomImageIndex];
+  return image;
+};
+
+function Banner({ data }: IBanner) {
   const flatListRef = useRef<FlatList>(null);
   let currentStepIndex = 0;
   const [stepIndex, setStepIndex] = useState(0);
@@ -42,16 +45,9 @@ function Banner({ data }: BannerProps) {
     outputRange: scaleOutputRange,
   });
 
-  function getRandomItem(arr: any) {
-    const randomIndex = Math.floor(Math.random() * arr.length);
-
-    const item = arr[randomIndex];
-
-    return item;
-  }
-
   const onViewRef = useRef((viewableItems: any) => {
     currentStepIndex = viewableItems.changed[0].index;
+
     setStepIndex(currentStepIndex);
   });
 
@@ -95,18 +91,28 @@ function Banner({ data }: BannerProps) {
         pagingEnabled
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollValue } } }], { useNativeDriver: false })}
         renderItem={({ item }) => {
-          return <ImageCard image={getRandomItem(item?.images)} />;
+          return <ImageCard image={getRandomImage(item?.images)} />;
         }}
       />
       <View style={style.indicatorConatiner} pointerEvents="none">
         {data.map((_, index) => (
-          <Indicators key={index} />
+          <BannerIndicators key={index} />
         ))}
-        <ActiveIndicator translateX={translateX} scaleX={scaleX} />
+        <BannerActiveIndicator translateX={translateX} scaleX={scaleX} />
       </View>
       <View style={style.textButtonsContainer}>
-        {stepIndex > 0 && <TextButton title="Prev" titleStyle={style.prevTextButton} onPress={() => onPrevButtonPress()} />}
-        {stepIndex < data?.length - 1 && <TextButton title="Next" titleStyle={style.nextTextButton} onPress={() => onNextButtonPress()} />}
+        <TextButton
+          disabled={stepIndex === 0 ? true : false}
+          title="Prev"
+          titleStyle={[style.prevTextButton, stepIndex === 0 && style.disabledButton]}
+          onPress={() => onPrevButtonPress()}
+        />
+        <TextButton
+          disabled={stepIndex === data?.length - 1 ? true : false}
+          title="Next"
+          titleStyle={[style.nextTextButton, stepIndex === data?.length - 1 && style.disabledButton]}
+          onPress={() => onNextButtonPress()}
+        />
       </View>
     </View>
   );

@@ -6,11 +6,11 @@ import FastImage from 'react-native-fast-image';
 // LOADER
 import Loader from '../loadingView';
 
-interface ImageProps {
+interface IImage {
   uri: string;
 }
 
-function Image({ uri }: ImageProps) {
+function Image({ uri }: IImage) {
   const { width, height } = useWindowDimensions();
   const [imageLoading, setImageLoading] = useState(false);
 
