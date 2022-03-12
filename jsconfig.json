@@ -8,7 +8,8 @@
       "@constants/*": ["./src/constants/*"],
       "@navigation/*": ["./src/navigation/*"],
       "@redux/*": ["./src/redux/*"],
-      "@screens/*": ["./src/screens/*"]
+      "@screens/*": ["./src/screens/*"],
+      "@utility/*": ["./src/utility/*"]
     }
   }
 }

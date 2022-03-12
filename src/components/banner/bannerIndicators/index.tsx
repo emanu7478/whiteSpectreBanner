@@ -5,8 +5,8 @@ import { View } from 'react-native';
 // STYLE
 import style from './style';
 
-function Indicators() {
+function BannerIndicators() {
   return <View style={style.container} />;
 }
 
-export default Indicators;
+export default BannerIndicators;

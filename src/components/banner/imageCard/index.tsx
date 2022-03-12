@@ -8,11 +8,11 @@ import Image from '../../image';
 // STYLE
 import style from './style';
 
-interface ImageCardProps {
+interface IImageCard {
   image: string;
 }
 
-function ImageCard({ image }: ImageCardProps) {
+function ImageCard({ image }: IImageCard) {
   return (
     <View style={style.container}>
       <Image uri={image} />

@@ -1,41 +1,40 @@
 import { StyleSheet } from 'react-native';
 
+import { Normalize } from '../../utility/normalize';
 import * as colors from '../../constants/colors';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
   },
-  card: {
-    height: '100%',
-    marginHorizontal: 5,
-    borderRadius: 5,
-  },
   indicatorConatiner: {
     alignSelf: 'center',
     position: 'absolute',
-    bottom: 20,
+    bottom: Normalize(20),
     flexDirection: 'row',
   },
   textButtonsContainer: {
     flexDirection: 'row',
     position: 'absolute',
-    bottom: 15,
+    bottom: Normalize(15),
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 15,
+    paddingHorizontal: Normalize(15),
     width: '100%',
   },
   prevTextButton: {
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: Normalize(15),
     color: colors.white,
     alignSelf: 'flex-start',
   },
   nextTextButton: {
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: Normalize(15),
     color: colors.white,
     alignSelf: 'flex-end',
+  },
+  disabledButton: {
+    color: colors.lightgrey,
   },
 });

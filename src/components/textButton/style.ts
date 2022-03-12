@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native';
+import { Normalize } from '../../utility/normalize';
 
 export default StyleSheet.create({
   title: {
-    fontSize: 14,
+    fontSize: Normalize(14),
   },
 });
