@@ -42,6 +42,14 @@ function Banner({ data }: BannerProps) {
     outputRange: scaleOutputRange,
   });
 
+  function getRandomItem(arr: any) {
+    const randomIndex = Math.floor(Math.random() * arr.length);
+
+    const item = arr[randomIndex];
+
+    return item;
+  }
+
   const onViewRef = useRef((viewableItems: any) => {
     currentStepIndex = viewableItems.changed[0].index;
     setStepIndex(currentStepIndex);
@@ -87,7 +95,7 @@ function Banner({ data }: BannerProps) {
         pagingEnabled
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollValue } } }], { useNativeDriver: false })}
         renderItem={({ item }) => {
-          return <ImageCard image={item?.images?.[0]} />;
+          return <ImageCard image={getRandomItem(item?.images)} />;
         }}
       />
       <View style={style.indicatorConatiner} pointerEvents="none">
