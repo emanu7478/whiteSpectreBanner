@@ -1,4 +1,5 @@
-[
+{
+  "banners" : [
   {
     "title": "First Block",
     "images": [
@@ -32,3 +33,4 @@
     ]
   }
 ]
+}
