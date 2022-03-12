@@ -1,8 +1,10 @@
+// LIBRARY IMPORTS
 import React, { useState } from 'react';
 import { useWindowDimensions, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
+
+// LOADER
 import Loader from '../loadingView';
-// import style from './style';
 
 interface ImageProps {
   uri: string;

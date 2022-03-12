@@ -1,3 +1,8 @@
 import { combineReducers } from 'redux';
-const Reducer = combineReducers({});
+// REDUCERS
+import bannerReducer from './banners/reducers';
+
+const Reducer = combineReducers({
+  bannerReducer,
+});
 export const rootReducer = Reducer;

@@ -1,15 +1,29 @@
+// LIBRARY IMPORTS
 import React, { useRef, useState } from 'react';
 import { Animated, FlatList, useWindowDimensions, View } from 'react-native';
+
+// CUSTOM COMPONENTS
 import TextButton from '../textButton';
 import ActiveIndicator from './activeIndicator';
 import ImageCard from './imageCard';
 import Indicators from './indicators';
 
+// STYLE
 import style from './style';
-const data = ['brown', 'orange', 'red', 'blue', 'green'];
-let url = 'https://i.picsum.photos/id/100/2500/1656.jpg?hmac=gWyN-7ZB32rkAjMhKXQgdHOIBRHyTSgzuOK6U0vXb1w';
+interface imagesProp {
+  uri: string;
+}
 
-export default function Banner() {
+interface dataProp {
+  title: string;
+  images: imagesProp[];
+}
+
+interface BannerProps {
+  data: dataProp[];
+}
+
+function Banner({ data }: BannerProps) {
   const flatListRef = useRef<FlatList>(null);
   let currentStepIndex = 0;
   const [stepIndex, setStepIndex] = useState(0);
@@ -21,8 +35,8 @@ export default function Banner() {
   });
   const inputRange = [0];
   const scaleOutputRange = [1];
-  data.forEach((_, i) => i !== 0 && inputRange.push(...[(width * (2 * i - 1)) / 2, width * i]));
-  data.forEach((_, i) => i !== 0 && scaleOutputRange.push(...[0, 1]));
+  data?.forEach((_, i) => i !== 0 && inputRange.push(...[(width * (2 * i - 1)) / 2, width * i]));
+  data?.forEach((_, i) => i !== 0 && scaleOutputRange.push(...[0, 1]));
   const scaleX = scrollValue.interpolate({
     inputRange,
     outputRange: scaleOutputRange,
@@ -72,8 +86,8 @@ export default function Banner() {
         refreshing={false}
         pagingEnabled
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollValue } } }], { useNativeDriver: false })}
-        renderItem={() => {
-          return <ImageCard image={url} />;
+        renderItem={({ item }) => {
+          return <ImageCard image={item?.images?.[0]} />;
         }}
       />
       <View style={style.indicatorConatiner} pointerEvents="none">
@@ -89,3 +103,5 @@ export default function Banner() {
     </View>
   );
 }
+
+export default Banner;

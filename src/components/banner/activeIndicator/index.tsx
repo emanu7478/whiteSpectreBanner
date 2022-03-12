@@ -1,6 +1,8 @@
+// LIBRARY IMPORTS
 import React from 'react';
 import { Animated } from 'react-native';
 
+// STYLE
 import style from './style';
 
 interface ActiveIndicatorProps {

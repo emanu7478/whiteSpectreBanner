@@ -1,7 +1,9 @@
+// LIBRARY IMPORTS
 import React from 'react';
 import { View } from 'react-native';
 import { UIActivityIndicator } from 'react-native-indicators';
 
+// STYLE
 import * as colors from '../../constants/colors';
 import style from './style';
 

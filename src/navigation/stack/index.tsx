@@ -12,7 +12,7 @@ const PrivateScreensStack = () => {
       screenOptions={{
         gestureEnabled: true,
         gestureDirection: 'horizontal',
-        headerShown: true,
+        headerShown: false,
         headerMode: 'screen',
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}
